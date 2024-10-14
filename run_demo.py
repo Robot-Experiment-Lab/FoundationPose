@@ -6,6 +6,9 @@
 # distribution of this software and related documentation without an express
 # license agreement from NVIDIA CORPORATION is strictly prohibited.
 
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 from estimater import *
 from datareader import *
@@ -15,11 +18,11 @@ import argparse
 if __name__=='__main__':
   parser = argparse.ArgumentParser()
   code_dir = os.path.dirname(os.path.realpath(__file__))
-  parser.add_argument('--mesh_file', type=str, default=f'{code_dir}/demo_data/mustard0/mesh/textured_simple.obj')
-  parser.add_argument('--test_scene_dir', type=str, default=f'{code_dir}/demo_data/mustard0')
+  parser.add_argument('--mesh_file', type=str, default=f'{code_dir}/demo_data/mustard0/mesh/textured_simple.obj') # f'{code_dir}/demo_data/mustard0/mesh/textured_simple.obj', demo_data/kinect_driller_seq/mesh/textured_mesh.obj
+  parser.add_argument('--test_scene_dir', type=str, default=f'{code_dir}/demo_data/mustard0') # f'{code_dir}/demo_data/mustard0', demo_data/kinect_driller_seq
   parser.add_argument('--est_refine_iter', type=int, default=5)
   parser.add_argument('--track_refine_iter', type=int, default=2)
-  parser.add_argument('--debug', type=int, default=1)
+  parser.add_argument('--debug', type=int, default=2)
   parser.add_argument('--debug_dir', type=str, default=f'{code_dir}/debug')
   args = parser.parse_args()
 
@@ -49,6 +52,9 @@ if __name__=='__main__':
     depth = reader.get_depth(i)
     if i==0:
       mask = reader.get_mask(0).astype(bool)
+      # print(color.shape)
+      # print(depth.shape)
+      # print(mask)
       pose = est.register(K=reader.K, rgb=color, depth=depth, ob_mask=mask, iteration=args.est_refine_iter)
 
       if debug>=3:
