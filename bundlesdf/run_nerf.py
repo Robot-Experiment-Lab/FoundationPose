@@ -15,7 +15,7 @@ from bundlesdf.tool import *
 import yaml,argparse
 
 
-def run_neural_object_field(cfg, K, rgbs, depths, masks, cam_in_obs, debug=0, save_dir='/home/bowen/debug/foundationpose_bundlesdf'):
+def run_neural_object_field(cfg, K, rgbs, depths, masks, cam_in_obs, debug=0, save_dir='debug/foundationpose_bundlesdf'):
   rgbs = np.asarray(rgbs)
   depths = np.asarray(depths)
   masks = np.asarray(masks)
