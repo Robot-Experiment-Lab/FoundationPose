@@ -60,7 +60,10 @@ class YcbineoatReader:
     self.downscale = downscale
     self.zfar = zfar
     self.color_files = sorted(glob.glob(f"{self.video_dir}/rgb/*.png"))
-    self.K = np.loadtxt(f'{video_dir}/cam_K.txt').reshape(3,3)
+    # self.K = np.loadtxt(f'{video_dir}/cam_K.txt').reshape(3,3)
+    arm_right_cam_K_path = "third_party/xarm6/data/camera/mounted_white/K.npy"
+    self.K = np.load(arm_right_cam_K_path)
+    # print(self.K)
     self.id_strs = []
     for color_file in self.color_files:
       id_str = os.path.basename(color_file).replace('.png','')
