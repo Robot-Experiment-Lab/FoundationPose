@@ -13,6 +13,8 @@ find_package(Eigen3 REQUIRED)
 find_package(pybind11 REQUIRED)
 
 include_directories(
+  ~/anaconda3/envs/foundationpose/include/eigen3
+  /usr/include/eigen3
   include
   ${BLAS_INCLUDE_DIR}
 )
