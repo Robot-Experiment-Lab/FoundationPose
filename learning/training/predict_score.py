@@ -142,7 +142,7 @@ class ScorePredictor:
     if 'crop_ratio' not in self.cfg or self.cfg['crop_ratio'] is None:
       self.cfg['crop_ratio'] = 1.2
 
-    logging.info(f"self.cfg: \n {OmegaConf.to_yaml(self.cfg)}")
+    # logging.info(f"self.cfg: \n {OmegaConf.to_yaml(self.cfg)}")
 
     self.dataset = ScoreMultiPairH5Dataset(cfg=self.cfg, mode='test', h5_file=None, max_num_key=1)
     self.model = ScoreNetMultiPair(cfg=self.cfg, c_in=self.cfg['c_in']).cuda()

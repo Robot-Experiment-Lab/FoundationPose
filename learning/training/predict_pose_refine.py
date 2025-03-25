@@ -129,7 +129,7 @@ class PoseRefinePredictor:
       self.cfg['zfar'] = np.inf
     if 'normal_uint8' not in self.cfg:
       self.cfg['normal_uint8'] = False
-    logging.info(f"self.cfg: \n {OmegaConf.to_yaml(self.cfg)}")
+    # logging.info(f"self.cfg: \n {OmegaConf.to_yaml(self.cfg)}")
 
     self.dataset = PoseRefinePairH5Dataset(cfg=self.cfg, h5_file='', mode='test')
     self.model = RefineNet(cfg=self.cfg, c_in=self.cfg['c_in']).cuda()
